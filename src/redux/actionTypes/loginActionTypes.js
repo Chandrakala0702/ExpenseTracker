@@ -1,0 +1,4 @@
+export const SET_USERNAME = "SET_USERNAME";
+export const SET_PASSWORD = "SET_PASSWORD";
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const SET_LOGIN_ERROR = "SET_LOGIN_ERROR";
