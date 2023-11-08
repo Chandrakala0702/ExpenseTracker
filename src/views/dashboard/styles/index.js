@@ -66,7 +66,6 @@ export const styles = StyleSheet.create({
   },
   categoryContainer: {
     height: "37.5%",
-    backgroundColor: "green",
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
