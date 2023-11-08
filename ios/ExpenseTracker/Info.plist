@@ -49,9 +49,24 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-  <key>UIStatusBarStyle</key>
-  <string>UIStatusBarStyleDefault</string>
-  <key>CADisableMinimumFrameDurationOnPhone</key>
-  <true/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SpaceGrotesk-Bold.ttf</string>
+		<string>SpaceGrotesk-Light.ttf</string>
+		<string>SpaceGrotesk-Medium.ttf</string>
+		<string>SpaceGrotesk-Regular.ttf</string>
+		<string>SpaceGrotesk-SemiBold.ttf</string>
+		<string>SpaceGrotesk-VariableFont_wght.ttf</string>
+		<string>Montserrat-Light.ttf</string>
+		<string>Montserrat-Black.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-ExtraBold.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
+	</array>
 </dict>
 </plist>

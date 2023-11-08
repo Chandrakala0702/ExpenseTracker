@@ -1,12 +1,57 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { styles as dashboard_styles } from "./styles";
+import { SafeAreaView } from "react-native-safe-area-context";
+import CalendarMonthView from "../../components/calendar-month";
 
 const DashboardScreen = () => {
   return (
-    <View style={dashboard_styles.container}>
-      <Text>Welcome to the Expense Tracker Dashboard!</Text>
-    </View>
+    <SafeAreaView style={dashboard_styles.container}>
+      <View style={dashboard_styles.headerContainer}>
+        <Text style={dashboard_styles.headerLabel}>Spending Dashboard</Text>
+        <Pressable>
+          <Text style={dashboard_styles.headerLabel}>Logout</Text>
+        </Pressable>
+      </View>
+
+      <View style={dashboard_styles.innerContainer}>
+        <View style={dashboard_styles.titleView}>
+          <Text style={dashboard_styles.summaryTitle}>Spending Summary</Text>
+          <Pressable>
+            <Text
+              style={[
+                dashboard_styles.summaryTitle,
+                dashboard_styles.editTitle,
+              ]}
+            >
+              Edit
+            </Text>
+          </Pressable>
+        </View>
+        <View style={dashboard_styles.monthView}>
+          <CalendarMonthView />
+        </View>
+        <View
+          style={{
+            height: "30.5%",
+            marginBottom: "2%",
+            backgroundColor: "red",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        ></View>
+        <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
+          <Text style={dashboard_styles.chartSummaryTitle}>Spending Limit</Text>
+          <Text style={dashboard_styles.chartSummaryTitle}>Amount Spent</Text>
+        </View>
+        <View style={[dashboard_styles.titleView, {marginBottom: '2%'}]}>
+          <Text style={dashboard_styles.charSummaryValueText}>AED 4567.78</Text>
+          <Text style={dashboard_styles.charSummaryValueText}>AED 898.90</Text>
+        </View>
+        <View style={{ height: "37.5%", backgroundColor: "green" }}></View>
+      </View>
+    </SafeAreaView>
   );
 };
 
