@@ -29,6 +29,7 @@ const LoginScreen = ({ navigation }) => {
     }
   }, [isAuthenticated]);
 
+
   return (
     <View style={login_styles.container}>
       <View
@@ -40,7 +41,7 @@ const LoginScreen = ({ navigation }) => {
         }}
       >
         <Image
-          source={require("../../assets/images/logo_tracker.png")} // Replace with the actual path to your logo image
+          source={require("../../../assets/images/logo_tracker.png")}
           style={login_styles.logo}
         />
       </View>

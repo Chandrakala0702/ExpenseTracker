@@ -3,13 +3,21 @@ import { View, Text, Pressable } from "react-native";
 import { styles as dashboard_styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CalendarMonthView from "../../components/calendar-month";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/actions/loginActions";
 
-const DashboardScreen = () => {
+const DashboardScreen = ({navigation}) => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigation.navigate("Login");
+  };
   return (
     <SafeAreaView style={dashboard_styles.container}>
       <View style={dashboard_styles.headerContainer}>
         <Text style={dashboard_styles.headerLabel}>Spending Dashboard</Text>
-        <Pressable>
+        <Pressable onPress={handleLogout}>
           <Text style={dashboard_styles.headerLabel}>Logout</Text>
         </Pressable>
       </View>
@@ -45,7 +53,7 @@ const DashboardScreen = () => {
           <Text style={dashboard_styles.chartSummaryTitle}>Spending Limit</Text>
           <Text style={dashboard_styles.chartSummaryTitle}>Amount Spent</Text>
         </View>
-        <View style={[dashboard_styles.titleView, {marginBottom: '2%'}]}>
+        <View style={[dashboard_styles.titleView, { marginBottom: "2%" }]}>
           <Text style={dashboard_styles.charSummaryValueText}>AED 4567.78</Text>
           <Text style={dashboard_styles.charSummaryValueText}>AED 898.90</Text>
         </View>

@@ -25,3 +25,9 @@ export const login = () => {
     type: actionTypes.LOGIN_REQUEST,
   };
 };
+
+export const logout = () => {
+  return {
+    type: actionTypes.LOGOUT_REQUEST,
+  };
+};

@@ -37,6 +37,8 @@ const loginReducer = (state = initialState, action) => {
           error: "Invalid Credentials",
         };
       }
+    case actionTypes.LOGOUT_REQUEST:
+      return initialState;
     default:
       return state;
   }
