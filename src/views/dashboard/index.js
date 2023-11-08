@@ -37,6 +37,10 @@ const DashboardScreen = ({ navigation }) => {
     }
   }, [selectedCategory]);
 
+  useEffect(() => {
+    dispatch(calculateOverallSpending());
+  }, [dashboardState.categoryData]);
+
   const handleLogout = () => {
     dispatch(logout());
     navigation.navigate("Login");
@@ -90,9 +94,11 @@ const DashboardScreen = ({ navigation }) => {
                   selectedCategory
                     ? parseFloat(
                         selectedCategory.spentAmount /
-                        selectedCategory.spentAmountLimit
+                          selectedCategory.spentAmountLimit
                       ).toFixed(1)
-                    : parseFloat(dashboardState.overallSpentPercentage / 100).toFixed(1)
+                    : parseFloat(
+                        dashboardState.overallSpentPercentage / 100
+                      ).toFixed(1)
                 }
                 progressColor="rgb(134, 65, 244)"
                 startAngle={Math.PI * 0.5}

@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   sliderTitleContainer: {
-    width: "90%",
+    width: "100%",
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
@@ -39,13 +39,17 @@ export const styles = StyleSheet.create({
     color: "#1D1D2C",
     paddingLeft: "3%",
   },
+  sliderRightIconText: {
+    paddingRight: "5%",
+    paddingLeft: 0,
+  },
   sliderStyle: { width: 300, marginTop: -40 },
   sliderValueContainer: {
     flexDirection: "row",
-    width: "90%",
+    width: "95%",
     alignItems: "center",
     justifyContent: "space-between",
-    marginTop: -50,
+    marginTop: -15,
   },
   sliderValueText: {
     fontSize: 12,

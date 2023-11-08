@@ -21,7 +21,7 @@ export const DashboardConstant = {
   },
 };
 
-export const EditSoentLimitConstant = {
+export const EditSpentLimitConstant = {
   title: {
     spentLimit: "Total Spending Limit",
     AED: "AED",

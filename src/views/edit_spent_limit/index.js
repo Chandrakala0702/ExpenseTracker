@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import { styles as edit_screen_styles } from "./styles";
 import { Icon } from "react-native-elements";
 import SliderComponent from "../../components/slider_component";
-import { EditSoentLimitConstant } from "../../utility/constants";
+import { EditSpentLimitConstant } from "../../utility/constants";
+import { useSelector } from "react-redux";
 
 const EditSpentLimitScreen = ({ navigation }) => {
+  const dashboardState = useSelector((state) => state.dashboard);
+  const [totalSpentAmountLimit, setTotalSpentAmountLimit] = useState(0);
+
+  useEffect(() => {
+    const totalSpentAmountLimit = dashboardState.spentLimitData.reduce(
+      (total, item) => total + item.spentAmountLimit,
+      0
+    );
+    setTotalSpentAmountLimit(totalSpentAmountLimit);
+  }, [dashboardState.spentLimitData]);
+
   const handleBackNavigation = () => {
     navigation.goBack();
   };
@@ -23,10 +35,10 @@ const EditSpentLimitScreen = ({ navigation }) => {
         </Pressable>
         <View style={{ height: "20%" }}>
           <Text style={edit_screen_styles.headerLabel}>
-            {EditSoentLimitConstant.title.spentLimit}
+            {EditSpentLimitConstant.title.spentLimit}
           </Text>
           <Text style={edit_screen_styles.headerValue}>
-            {EditSoentLimitConstant.title.AED} 18500
+            {EditSpentLimitConstant.title.AED} {totalSpentAmountLimit}
           </Text>
         </View>
       </View>
