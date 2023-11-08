@@ -4,18 +4,11 @@ import Slider from "@react-native-community/slider";
 import { useSelector } from "react-redux";
 import { Icon } from "react-native-elements";
 import { styles as slider_styles } from "./styles";
+import { SliderConstant } from "../../utility/constants";
 
 const SliderComponent = () => {
   const dashboardState = useSelector((state) => state.dashboard);
   const [sliderValues, setSliderValues] = useState([0, 0, 0, 0, 0, 0]);
-  const colors = [
-    "#FF5733",
-    "#FFC300",
-    "#33FF57",
-    "#33B0FF",
-    "#FF33C7",
-    "#FF339E",
-  ];
 
   const handleSliderChange = (index, value) => {
     const newSliderValues = [...sliderValues];
@@ -75,8 +68,12 @@ const SliderComponent = () => {
             maximumTrackTintColor={item.innerTrackColor}
           />
           <View style={slider_styles.sliderValueContainer}>
-            <Text style={slider_styles.sliderValueText}>0</Text>
-            <Text style={slider_styles.sliderValueText}>5000</Text>
+            <Text style={slider_styles.sliderValueText}>
+              {SliderConstant.fields.number0}
+            </Text>
+            <Text style={slider_styles.sliderValueText}>
+              {SliderConstant.fields.number5000}
+            </Text>
           </View>
         </View>
       ))}

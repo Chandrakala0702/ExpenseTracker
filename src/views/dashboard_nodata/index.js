@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import { styles as dashboard_styles } from "./styles";
 import { ProgressCircle } from "react-native-svg-charts";
 import EmptyDataView from "../emptyDataView";
+import { DashboardConstant } from "../../utility/constants";
 
 const DashboardWithNoDataScreen = () => {
   return (
@@ -21,12 +22,20 @@ const DashboardWithNoDataScreen = () => {
         <Text style={dashboard_styles.progressText}>{"Total Spendings"}</Text>
       </View>
       <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
-        <Text style={dashboard_styles.chartSummaryTitle}>Spending Limit</Text>
-        <Text style={dashboard_styles.chartSummaryTitle}>Amount Spent</Text>
+        <Text style={dashboard_styles.chartSummaryTitle}>
+          {DashboardConstant.title.spendingLimit}
+        </Text>
+        <Text style={dashboard_styles.chartSummaryTitle}>
+          {DashboardConstant.title.amountSpent}
+        </Text>
       </View>
       <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
-        <Text style={dashboard_styles.charSummaryValueText}>AED 0</Text>
-        <Text style={dashboard_styles.charSummaryValueText}>AED 0</Text>
+        <Text style={dashboard_styles.charSummaryValueText}>
+          {DashboardConstant.title.AED} 0
+        </Text>
+        <Text style={dashboard_styles.charSummaryValueText}>
+          {DashboardConstant.title.AED} 0
+        </Text>
       </View>
       <View style={dashboard_styles.categoryContainer}>
         <EmptyDataView />

@@ -9,6 +9,7 @@ import { ProgressCircle } from "react-native-svg-charts";
 import IconWithProgressBar from "../../components/progress_icon";
 import { calculateOverallSpending } from "../../redux/actions/dashboardActions";
 import DashboardWithNoDataScreen from "../dashboard_nodata";
+import { DashboardConstant } from "../../utility/constants";
 
 const DashboardScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -51,15 +52,21 @@ const DashboardScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={dashboard_styles.container}>
       <View style={dashboard_styles.headerContainer}>
-        <Text style={dashboard_styles.headerLabel}>Spending Dashboard</Text>
+        <Text style={dashboard_styles.headerLabel}>
+          {DashboardConstant.title.spendingDashboard}
+        </Text>
         <Pressable onPress={handleLogout}>
-          <Text style={dashboard_styles.headerLabel}>Logout</Text>
+          <Text style={dashboard_styles.headerLabel}>
+            {DashboardConstant.title.logout}
+          </Text>
         </Pressable>
       </View>
 
       <View style={dashboard_styles.innerContainer}>
         <View style={dashboard_styles.titleView}>
-          <Text style={dashboard_styles.summaryTitle}>Spending Summary</Text>
+          <Text style={dashboard_styles.summaryTitle}>
+            {DashboardConstant.title.spendingSummary}
+          </Text>
           <Pressable onPress={handleEdit}>
             <Text
               style={[
@@ -67,7 +74,7 @@ const DashboardScreen = ({ navigation }) => {
                 dashboard_styles.editTitle,
               ]}
             >
-              Edit
+              {DashboardConstant.title.edit}
             </Text>
           </Pressable>
         </View>
@@ -99,15 +106,17 @@ const DashboardScreen = ({ navigation }) => {
                   : dashboardState.overallSpentPercentage + "%"}
               </Text>
               <Text style={dashboard_styles.progressText}>
-                {selectedCategory ? spentAmountCategory : "Total Spendings"}
+                {selectedCategory
+                  ? spentAmountCategory
+                  : DashboardConstant.title.totalSpendings}
               </Text>
             </View>
             <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
               <Text style={dashboard_styles.chartSummaryTitle}>
-                Spending Limit
+                {DashboardConstant.title.spendingLimit}
               </Text>
               <Text style={dashboard_styles.chartSummaryTitle}>
-                Amount Spent
+                {DashboardConstant.title.amountSpent}
               </Text>
             </View>
             <View
@@ -119,13 +128,13 @@ const DashboardScreen = ({ navigation }) => {
               ]}
             >
               <Text style={dashboard_styles.charSummaryValueText}>
-                {"AED"}{" "}
+                {DashboardConstant.title.AED}{" "}
                 {selectedCategory
                   ? totalSpendLimit
                   : dashboardState.overallAmountLimit}
               </Text>
               <Text style={dashboard_styles.charSummaryValueText}>
-                {"AED"}{" "}
+                {DashboardConstant.title.AED}{" "}
                 {selectedCategory
                   ? totalAmountSpent
                   : dashboardState.overAllSpentAmount}

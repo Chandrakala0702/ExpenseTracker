@@ -30,4 +30,12 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "transparent",
   },
+  sliderContainer: {
+    height: "65%",
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "95%",
+    paddingHorizontal: "5%",
+  },
 });

@@ -8,6 +8,7 @@ import {
   setPassword,
   setUsername,
 } from "../../redux/actions/loginActions";
+import { logoImage } from "../../utility/images";
 
 const LoginScreen = ({ navigation }) => {
   const loginState = useSelector((state) => state.login);
@@ -32,10 +33,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={login_styles.container}>
       <View style={login_styles.logoContainer}>
-        <Image
-          source={require("../../../assets/images/logo_tracker.png")}
-          style={login_styles.logo}
-        />
+        <Image source={logoImage} style={login_styles.logo} />
       </View>
       {loginState.error && (
         <Text style={login_styles.errorText}>{loginState.error}</Text>

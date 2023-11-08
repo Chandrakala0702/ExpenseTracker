@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, Text, Pressable } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useDispatch, useSelector } from "react-redux";
 import { styles as edit_screen_styles } from "./styles";
 import { Icon } from "react-native-elements";
 import SliderComponent from "../../components/slider_component";
+import { EditSoentLimitConstant } from "../../utility/constants";
 
 const EditSpentLimitScreen = ({ navigation }) => {
-  const dispatch = useDispatch();
-  const dashboardState = useSelector((state) => state.dashboard);
+  const handleBackNavigation = () => {
+    navigation.goBack();
+  };
 
   return (
     <View style={edit_screen_styles.container}>
       <View style={edit_screen_styles.headerContainer}>
-        <Pressable style={{ height: "25%" }}>
+        <Pressable style={{ height: "25%" }} onPress={handleBackNavigation}>
           <Icon
             name={"chevron-left"}
             type={"material-community"}
@@ -23,21 +23,14 @@ const EditSpentLimitScreen = ({ navigation }) => {
         </Pressable>
         <View style={{ height: "20%" }}>
           <Text style={edit_screen_styles.headerLabel}>
-            Total Spending Limit
+            {EditSoentLimitConstant.title.spentLimit}
           </Text>
-          <Text style={edit_screen_styles.headerValue}>AED 18500</Text>
+          <Text style={edit_screen_styles.headerValue}>
+            {EditSoentLimitConstant.title.AED} 18500
+          </Text>
         </View>
       </View>
-      <View
-        style={{
-          height: "65%",
-          alignSelf: "center",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "95%",
-          paddingHorizontal: "5%",
-        }}
-      >
+      <View style={edit_screen_styles.sliderContainer}>
         <SliderComponent />
       </View>
     </View>
