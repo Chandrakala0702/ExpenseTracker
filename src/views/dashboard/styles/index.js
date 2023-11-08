@@ -14,13 +14,17 @@ export const styles = StyleSheet.create({
   chartSummaryTitle: {
     fontSize: 14,
     fontWeight: "500",
-    fontFamily: "SpaceGrotesk-Light",
+    fontFamily: "Montserrat",
+    color: "#1D1D2C",
+    textAlign: "center",
   },
   charSummaryValueText: {
     fontSize: 12,
     fontWeight: "700",
     fontFamily: "Montserrat",
     color: "#1D1D2C",
+    textAlign: "center",
+    width: "30%",
   },
   editTitle: {
     textDecorationLine: "underline",
@@ -36,6 +40,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     marginBottom: "5%",
+    width: "100%",
   },
   innerContainer: {
     height: "75%",

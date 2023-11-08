@@ -30,7 +30,8 @@ export const styles = StyleSheet.create({
   iconText: {
     marginTop: 5,
     fontSize: 12,
-    fontWeight: "bold",
-    color: "#333",
+    fontWeight: "500",
+    fontFamily: "Montserrat",
+    color: "#1D1D2C",
   },
 });

@@ -74,7 +74,7 @@ const DashboardScreen = ({ navigation }) => {
         </View>
         {!showNoDataDashboard ? (
           <>
-            <View style={{ flex: 0.9 }}>
+            <View style={{ flex: 0.85 }}>
               <ProgressCircle
                 style={dashboard_styles.progressCircle}
                 progress={
@@ -108,7 +108,14 @@ const DashboardScreen = ({ navigation }) => {
                 Amount Spent
               </Text>
             </View>
-            <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
+            <View
+              style={[
+                dashboard_styles.titleView,
+                {
+                  marginBottom: 0,
+                },
+              ]}
+            >
               <Text style={dashboard_styles.charSummaryValueText}>
                 {"AED"}{" "}
                 {selectedCategory
