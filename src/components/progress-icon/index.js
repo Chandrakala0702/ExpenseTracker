@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TouchableWithoutFeedback, Text } from "react-native";
+import { View, TouchableWithoutFeedback, Text, Pressable } from "react-native";
 import { Icon } from "react-native-elements";
 import { ProgressCircle } from "react-native-svg-charts";
 import { iconsData } from "../../utility/enums";
@@ -8,7 +8,8 @@ import { styles as icon_styles } from "./styles";
 const IconWithProgressBar = () => {
   const [isPressed, setIsPressed] = useState(false);
 
-  const handlePress = () => {
+  const handlePress = (index) => {
+    console.log("dhasjkgdkjs");
     setIsPressed(!isPressed);
   };
 
@@ -17,7 +18,7 @@ const IconWithProgressBar = () => {
       <View style={icon_styles.row}>
         {iconsData.slice(0, 3).map((icon, index) => (
           <View key={index} style={icon_styles.iconContainer}>
-            <TouchableWithoutFeedback onPress={handlePress}>
+            <Pressable onPress={handlePress}>
               <ProgressCircle
                 style={[
                   icon_styles.progressCircle,
@@ -27,7 +28,7 @@ const IconWithProgressBar = () => {
                       : icon.innerCircleColor,
                   },
                 ]}
-                progress={0.5}
+                progress={isPressed ? 0 : icon.progress}
                 progressColor={icon.iconColor}
                 strokeWidth={2}
               >
@@ -35,12 +36,12 @@ const IconWithProgressBar = () => {
                   <Icon
                     name={icon.name}
                     type={icon.type}
-                    color={icon.iconColor}
+                    color={isPressed ? "white" : icon.iconColor}
                     size={20}
                   />
                 </View>
               </ProgressCircle>
-            </TouchableWithoutFeedback>
+            </Pressable>
             <Text style={icon_styles.iconText}>{icon.text}</Text>
           </View>
         ))}
@@ -48,7 +49,8 @@ const IconWithProgressBar = () => {
       <View style={icon_styles.row}>
         {iconsData.slice(3, 6).map((icon, index) => (
           <View key={index} style={icon_styles.iconContainer}>
-            <TouchableWithoutFeedback onPress={handlePress}>
+            {console.log(icon.progress)}
+            <Pressable onPress={handlePress}>
               <ProgressCircle
                 style={[
                   icon_styles.progressCircle,
@@ -58,7 +60,7 @@ const IconWithProgressBar = () => {
                       : icon.innerCircleColor,
                   },
                 ]}
-                progress={0.5}
+                progress={isPressed ? 0 : icon.progress}
                 progressColor={icon.iconColor}
                 strokeWidth={2}
               >
@@ -66,12 +68,12 @@ const IconWithProgressBar = () => {
                   <Icon
                     name={icon.name}
                     type={icon.type}
-                    color={icon.iconColor}
+                    color={isPressed ? "white" : icon.iconColor}
                     size={20}
                   />
                 </View>
               </ProgressCircle>
-            </TouchableWithoutFeedback>
+            </Pressable>
             <Text style={icon_styles.iconText}>{icon.text}</Text>
           </View>
         ))}

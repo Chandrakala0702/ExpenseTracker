@@ -5,6 +5,8 @@ export const iconsData = [
     iconColor: "#DABB4F",
     innerCircleColor: "#FBF7EA",
     text: "Clothing",
+    progress: 0.4,
+    isClicked: false,
   },
   {
     name: "lipstick",
@@ -12,6 +14,8 @@ export const iconsData = [
     iconColor: "#5281AC",
     innerCircleColor: "#EAF0F5",
     text: "Beauty",
+    progress: 0.2,
+    isClicked: false,
   },
   {
     name: "volunteer-activism",
@@ -19,6 +23,8 @@ export const iconsData = [
     iconColor: "#EF9E38",
     innerCircleColor: "#FDF3E7",
     text: "Health & Fitness",
+    progress: 1,
+    isClicked: false,
   },
   {
     name: "restaurant",
@@ -26,6 +32,8 @@ export const iconsData = [
     iconColor: "#76A6D3",
     innerCircleColor: "#EFF4FA",
     text: "Food",
+    progress: 0.5,
+    isClicked: false,
   },
   {
     name: "home",
@@ -33,6 +41,8 @@ export const iconsData = [
     iconColor: "#F0D0D4",
     innerCircleColor: "#FBF4F4",
     text: "Housing",
+    progress: 0.7,
+    isClicked: false,
   },
   {
     name: "camera",
@@ -40,5 +50,7 @@ export const iconsData = [
     iconColor: "#5ACCD1",
     innerCircleColor: "#EBF9F9",
     text: "Entertainment",
+    progress: 0.2,
+    isClicked: false,
   },
 ];
