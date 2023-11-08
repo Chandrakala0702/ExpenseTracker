@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CalendarMonthView from "../../components/calendar-month";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/loginActions";
+import { ProgressCircle } from "react-native-svg-charts";
 
 const DashboardScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -39,7 +40,19 @@ const DashboardScreen = ({ navigation }) => {
         <View style={dashboard_styles.monthView}>
           <CalendarMonthView />
         </View>
-        <View style={dashboard_styles.chartContainer}></View>
+        <View style={{ flex: 1 }}>
+          <ProgressCircle
+            style={dashboard_styles.progressCircle}
+            progress={0.5}
+            progressColor="rgb(134, 65, 244)"
+            startAngle={Math.PI * 0.5}
+            endAngle={-Math.PI * 0.5}
+            strokeWidth={10}
+            cornerRadius={0}
+          />
+          <Text style={dashboard_styles.progressPercentageText}>50%</Text>
+          <Text style={dashboard_styles.progressText}>Total Spendings</Text>
+        </View>
         <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
           <Text style={dashboard_styles.chartSummaryTitle}>Spending Limit</Text>
           <Text style={dashboard_styles.chartSummaryTitle}>Amount Spent</Text>

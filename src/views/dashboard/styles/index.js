@@ -58,9 +58,8 @@ export const styles = StyleSheet.create({
     marginBottom: "5%",
   },
   chartContainer: {
-    height: "30.5%",
+    height: 150,
     marginBottom: "2%",
-    backgroundColor: "red",
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
@@ -71,5 +70,22 @@ export const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
+  },
+  progressCircle: { height: 300, width: "100%" },
+  progressPercentageText: {
+    position: "absolute",
+    fontSize: 24,
+    fontWeight: "500",
+    alignSelf: "center",
+    top: "40%",
+    fontFamily: "SpaceGrotesk-Light",
+  },
+  progressText: {
+    position: "absolute",
+    fontSize: 14,
+    fontWeight: "500",
+    alignSelf: "center",
+    top: "60%",
+    fontFamily: "SpaceGrotesk-Light",
   },
 });
