@@ -3,13 +3,14 @@ import { View, Text, Pressable } from "react-native";
 import { styles as dashboard_styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CalendarMonthView from "../../components/calendar-month";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/loginActions";
 import { ProgressCircle } from "react-native-svg-charts";
-import IconGridWithProgressBar from "../../components/progress-icon";
+import IconWithProgressBar from "../../components/progress-icon";
 
 const DashboardScreen = ({ navigation }) => {
   const dispatch = useDispatch();
+  const dashboardState = useSelector((state) => state.dashboard);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -63,7 +64,7 @@ const DashboardScreen = ({ navigation }) => {
           <Text style={dashboard_styles.charSummaryValueText}>AED 898.90</Text>
         </View>
         <View style={dashboard_styles.categoryContainer}>
-          <IconGridWithProgressBar />
+          <IconWithProgressBar data={dashboardState.categoryData} />
         </View>
       </View>
     </SafeAreaView>
