@@ -6,3 +6,9 @@ export const setSelectedCategory = (category) => {
     payload: category,
   };
 };
+
+export const calculateOverallSpending = () => {
+  return {
+    type: actionTypes.CALCULATE_OVERALL_SPENDING,
+  };
+};

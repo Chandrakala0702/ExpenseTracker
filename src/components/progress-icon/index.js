@@ -1,78 +1,120 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import { Icon } from "react-native-elements";
 import { ProgressCircle } from "react-native-svg-charts";
 import { styles as icon_styles } from "./styles";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedCategory } from "../../redux/actions/dashboardActions";
 
-const IconWithProgressBar = (props) => {
-  const categoryData = props.data;
-  const handlePress = (index) => {
-    console.log("dhasjkgdkjs");
-    setIsPressed(!isPressed);
+const IconWithProgressBar = () => {
+  const dashboardState = useSelector((state) => state.dashboard);
+  const dispatch = useDispatch();
+
+  const handlePress = (category) => {
+    dispatch(setSelectedCategory(category));
+  };
+
+  const handleSpentPercentage = (item) => {
+    return ((item.spentAmount / item.spentAmountLimit) * 100).toFixed(0) + "%";
   };
 
   return (
     <View style={icon_styles.container}>
       <View style={icon_styles.row}>
-        {categoryData.slice(0, 3).map((icon, index) => (
+        {dashboardState.categoryData.slice(0, 3).map((category, index) => (
           <View key={index} style={icon_styles.iconContainer}>
-            <Pressable onPress={handlePress}>
+            <Pressable
+              onPress={() => {
+                handlePress(category);
+              }}
+            >
               <ProgressCircle
                 style={[
                   icon_styles.progressCircle,
                   {
-                    backgroundColor: icon.clicked
-                      ? icon.iconColor
-                      : icon.innerCircleColor,
+                    backgroundColor:
+                      dashboardState.selectedCategory &&
+                      dashboardState.selectedCategory.id === category.id
+                        ? category.iconColor
+                        : category.innerCircleColor,
                   },
                 ]}
-                progress={icon.clicked ? 0 : icon.progress}
-                progressColor={icon.iconColor}
+                progress={
+                  dashboardState.selectedCategory &&
+                  dashboardState.selectedCategory.id === category.id
+                    ? 0
+                    : parseFloat(
+                        category.spentAmount / category.spentAmountLimit
+                      ).toFixed(1)
+                }
+                progressColor={category.iconColor}
                 strokeWidth={2}
               >
                 <View style={icon_styles.iconWrapper}>
                   <Icon
-                    name={icon.name}
-                    type={icon.type}
-                    color={icon.clicked ? "white" : icon.iconColor}
+                    name={category.name}
+                    type={category.type}
+                    color={
+                      dashboardState.selectedCategory &&
+                      dashboardState.selectedCategory.id === category.id
+                        ? "white"
+                        : category.iconColor
+                    }
                     size={20}
                   />
                 </View>
               </ProgressCircle>
             </Pressable>
-            <Text style={icon_styles.iconText}>{icon.text}</Text>
+            <Text style={icon_styles.iconText}>{category.text}</Text>
           </View>
         ))}
       </View>
       <View style={icon_styles.row}>
-        {categoryData.slice(3, 6).map((icon, index) => (
+        {dashboardState.categoryData.slice(3, 6).map((category, index) => (
           <View key={index} style={icon_styles.iconContainer}>
-            {console.log(icon.progress)}
-            <Pressable onPress={handlePress}>
+            <Pressable
+              onPress={() => {
+                handlePress(category);
+              }}
+            >
               <ProgressCircle
                 style={[
                   icon_styles.progressCircle,
                   {
-                    backgroundColor: icon.clicked
-                      ? icon.iconColor
-                      : icon.innerCircleColor,
+                    backgroundColor:
+                      dashboardState.selectedCategory &&
+                      dashboardState.selectedCategory.id === category.id
+                        ? category.iconColor
+                        : category.innerCircleColor,
                   },
                 ]}
-                progress={icon.clicked ? 0 : icon.progress}
-                progressColor={icon.iconColor}
+                progress={
+                  dashboardState.selectedCategory &&
+                  dashboardState.selectedCategory.id === category.id
+                    ? 0
+                    : parseFloat(
+                        category.spentAmount / category.spentAmountLimit
+                      ).toFixed(1)
+                }
+                progressColor={category.iconColor}
                 strokeWidth={2}
               >
                 <View style={icon_styles.iconWrapper}>
                   <Icon
-                    name={icon.name}
-                    type={icon.type}
-                    color={icon.clicked ? "white" : icon.iconColor}
+                    name={category.name}
+                    type={category.type}
+                    color={
+                      dashboardState.selectedCategory &&
+                      dashboardState.selectedCategory.id === category.id
+                        ? "white"
+                        : category.iconColor
+                    }
                     size={20}
                   />
                 </View>
               </ProgressCircle>
             </Pressable>
-            <Text style={icon_styles.iconText}>{icon.text}</Text>
+            <Text style={icon_styles.iconText}>{category.text}</Text>
           </View>
         ))}
       </View>

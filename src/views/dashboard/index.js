@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import { styles as dashboard_styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -7,15 +7,38 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/loginActions";
 import { ProgressCircle } from "react-native-svg-charts";
 import IconWithProgressBar from "../../components/progress-icon";
+import { calculateOverallSpending } from "../../redux/actions/dashboardActions";
 
 const DashboardScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const dashboardState = useSelector((state) => state.dashboard);
+  const [totalSpendLimit, setTotalSpendLimit] = useState(0);
+  const [totalAmountSpent, setTotalAmountSpent] = useState(0);
+  const [spentPercentage, setSpentPercentage] = useState(0);
+  const [spentAmountCategory, setSpentAmountCategory] = useState(null);
+  const selectedCategory = dashboardState.selectedCategory;
+
+  useEffect(() => {
+    if (selectedCategory) {
+      setTotalSpendLimit(selectedCategory.spentAmountLimit);
+      setTotalAmountSpent(selectedCategory.spentAmount);
+      setSpentAmountCategory(selectedCategory.text);
+      setSpentPercentage(
+        (
+          (selectedCategory.spentAmount / selectedCategory.spentAmountLimit) *
+          100
+        ).toFixed(0) + "%"
+      );
+    } else {
+      dispatch(calculateOverallSpending());
+    }
+  }, [selectedCategory]);
 
   const handleLogout = () => {
     dispatch(logout());
     navigation.navigate("Login");
   };
+
   return (
     <SafeAreaView style={dashboard_styles.container}>
       <View style={dashboard_styles.headerContainer}>
@@ -52,19 +75,35 @@ const DashboardScreen = ({ navigation }) => {
             strokeWidth={10}
             cornerRadius={10}
           />
-          <Text style={dashboard_styles.progressPercentageText}>50%</Text>
-          <Text style={dashboard_styles.progressText}>Total Spendings</Text>
+          <Text style={dashboard_styles.progressPercentageText}>
+            {selectedCategory
+              ? spentPercentage
+              : dashboardState.overallSpentPercentage + "%"}
+          </Text>
+          <Text style={dashboard_styles.progressText}>
+            {selectedCategory ? spentAmountCategory : "Total Spendings"}
+          </Text>
         </View>
         <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
           <Text style={dashboard_styles.chartSummaryTitle}>Spending Limit</Text>
           <Text style={dashboard_styles.chartSummaryTitle}>Amount Spent</Text>
         </View>
         <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
-          <Text style={dashboard_styles.charSummaryValueText}>AED 4567.78</Text>
-          <Text style={dashboard_styles.charSummaryValueText}>AED 898.90</Text>
+          <Text style={dashboard_styles.charSummaryValueText}>
+            {"AED"}{" "}
+            {selectedCategory
+              ? totalSpendLimit
+              : dashboardState.overallAmountLimit}
+          </Text>
+          <Text style={dashboard_styles.charSummaryValueText}>
+            {"AED"}{" "}
+            {selectedCategory
+              ? totalAmountSpent
+              : dashboardState.overAllSpentAmount}
+          </Text>
         </View>
         <View style={dashboard_styles.categoryContainer}>
-          <IconWithProgressBar data={dashboardState.categoryData} />
+          <IconWithProgressBar />
         </View>
       </View>
     </SafeAreaView>
