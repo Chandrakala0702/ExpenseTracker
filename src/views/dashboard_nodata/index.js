@@ -12,7 +12,7 @@ import EmptyDataView from "../emptyDataView";
 const DashboardWithNoDataScreen = ({ navigation }) => {
   return (
     <>
-      <View style={{ flex: 0.9 }}>
+      <View style={{ flex: 0.85 }}>
         <ProgressCircle
           style={dashboard_styles.progressCircle}
           progress={0}
