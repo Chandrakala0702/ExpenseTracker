@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import { styles as calendar_styles } from "./styles";
 
-const CalendarMonthView = () => {
+const CalendarMonthView = ({ handleMonthArrowPress }) => {
   const months = [
     "January",
     "February",
@@ -50,6 +50,10 @@ const CalendarMonthView = () => {
       setMonth(month - 1);
     }
   };
+
+  useEffect(() => {
+    handleMonthArrowPress(year === currentYear && month === currentMonth);
+  }, [year, month]);
 
   return (
     <View style={calendar_styles.container}>

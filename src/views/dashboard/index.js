@@ -8,6 +8,7 @@ import { logout } from "../../redux/actions/loginActions";
 import { ProgressCircle } from "react-native-svg-charts";
 import IconWithProgressBar from "../../components/progress-icon";
 import { calculateOverallSpending } from "../../redux/actions/dashboardActions";
+import DashboardWithNoDataScreen from "../dashboard_nodata";
 
 const DashboardScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const DashboardScreen = ({ navigation }) => {
   const [spentPercentage, setSpentPercentage] = useState(0);
   const [spentAmountCategory, setSpentAmountCategory] = useState(null);
   const selectedCategory = dashboardState.selectedCategory;
+  const [showNoDataDashboard, setShowNoDataDashboard] = useState(false);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -39,6 +41,11 @@ const DashboardScreen = ({ navigation }) => {
     navigation.navigate("Login");
   };
 
+  const handleMonthArrowPress = (value) => {
+    setShowNoDataDashboard(!value);
+  };
+  const handleEdit = () => {};
+
   return (
     <SafeAreaView style={dashboard_styles.container}>
       <View style={dashboard_styles.headerContainer}>
@@ -51,7 +58,7 @@ const DashboardScreen = ({ navigation }) => {
       <View style={dashboard_styles.innerContainer}>
         <View style={dashboard_styles.titleView}>
           <Text style={dashboard_styles.summaryTitle}>Spending Summary</Text>
-          <Pressable>
+          <Pressable onPress={handleEdit}>
             <Text
               style={[
                 dashboard_styles.summaryTitle,
@@ -63,48 +70,65 @@ const DashboardScreen = ({ navigation }) => {
           </Pressable>
         </View>
         <View style={dashboard_styles.monthView}>
-          <CalendarMonthView />
+          <CalendarMonthView handleMonthArrowPress={handleMonthArrowPress} />
         </View>
-        <View style={{ flex: 0.9 }}>
-          <ProgressCircle
-            style={dashboard_styles.progressCircle}
-            progress={0.5}
-            progressColor="rgb(134, 65, 244)"
-            startAngle={Math.PI * 0.5}
-            endAngle={-Math.PI * 0.5}
-            strokeWidth={10}
-            cornerRadius={10}
-          />
-          <Text style={dashboard_styles.progressPercentageText}>
-            {selectedCategory
-              ? spentPercentage
-              : dashboardState.overallSpentPercentage + "%"}
-          </Text>
-          <Text style={dashboard_styles.progressText}>
-            {selectedCategory ? spentAmountCategory : "Total Spendings"}
-          </Text>
-        </View>
-        <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
-          <Text style={dashboard_styles.chartSummaryTitle}>Spending Limit</Text>
-          <Text style={dashboard_styles.chartSummaryTitle}>Amount Spent</Text>
-        </View>
-        <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
-          <Text style={dashboard_styles.charSummaryValueText}>
-            {"AED"}{" "}
-            {selectedCategory
-              ? totalSpendLimit
-              : dashboardState.overallAmountLimit}
-          </Text>
-          <Text style={dashboard_styles.charSummaryValueText}>
-            {"AED"}{" "}
-            {selectedCategory
-              ? totalAmountSpent
-              : dashboardState.overAllSpentAmount}
-          </Text>
-        </View>
-        <View style={dashboard_styles.categoryContainer}>
-          <IconWithProgressBar />
-        </View>
+        {!showNoDataDashboard ? (
+          <>
+            <View style={{ flex: 0.9 }}>
+              <ProgressCircle
+                style={dashboard_styles.progressCircle}
+                progress={
+                  selectedCategory
+                    ? (
+                        selectedCategory.spentAmount /
+                        selectedCategory.spentAmountLimit
+                      ).toFixed(1)
+                    : (dashboardState.overallSpentPercentage / 100).toFixed(1)
+                }
+                progressColor="rgb(134, 65, 244)"
+                startAngle={Math.PI * 0.5}
+                endAngle={-Math.PI * 0.5}
+                strokeWidth={10}
+                cornerRadius={10}
+              />
+              <Text style={dashboard_styles.progressPercentageText}>
+                {selectedCategory
+                  ? spentPercentage
+                  : dashboardState.overallSpentPercentage + "%"}
+              </Text>
+              <Text style={dashboard_styles.progressText}>
+                {selectedCategory ? spentAmountCategory : "Total Spendings"}
+              </Text>
+            </View>
+            <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
+              <Text style={dashboard_styles.chartSummaryTitle}>
+                Spending Limit
+              </Text>
+              <Text style={dashboard_styles.chartSummaryTitle}>
+                Amount Spent
+              </Text>
+            </View>
+            <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
+              <Text style={dashboard_styles.charSummaryValueText}>
+                {"AED"}{" "}
+                {selectedCategory
+                  ? totalSpendLimit
+                  : dashboardState.overallAmountLimit}
+              </Text>
+              <Text style={dashboard_styles.charSummaryValueText}>
+                {"AED"}{" "}
+                {selectedCategory
+                  ? totalAmountSpent
+                  : dashboardState.overAllSpentAmount}
+              </Text>
+            </View>
+            <View style={dashboard_styles.categoryContainer}>
+              <IconWithProgressBar />
+            </View>
+          </>
+        ) : (
+          <DashboardWithNoDataScreen />
+        )}
       </View>
     </SafeAreaView>
   );
