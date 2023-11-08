@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   noDataTextLabel: {
     fontSize: 20,
     fontWeight: "500",
-    fontFamily: "SpaceGrotesk",
+    fontFamily: "SpaceGrotesk-Light",
     color: "#1D1D2C",
     textAlign: "center",
   },

@@ -1,15 +1,10 @@
 import React from "react";
-import { View, Text, Pressable } from "react-native";
+import { View, Text } from "react-native";
 import { styles as dashboard_styles } from "./styles";
-import CalendarMonthView from "../../components/calendar-month";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/actions/loginActions";
 import { ProgressCircle } from "react-native-svg-charts";
-import IconWithProgressBar from "../../components/progress-icon";
-import { calculateOverallSpending } from "../../redux/actions/dashboardActions";
 import EmptyDataView from "../emptyDataView";
 
-const DashboardWithNoDataScreen = ({ navigation }) => {
+const DashboardWithNoDataScreen = () => {
   return (
     <>
       <View style={{ flex: 0.85 }}>

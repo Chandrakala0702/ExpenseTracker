@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import { styles as dashboard_styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import CalendarMonthView from "../../components/calendar-month";
+import CalendarMonthView from "../../components/calendar_month";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/loginActions";
 import { ProgressCircle } from "react-native-svg-charts";
-import IconWithProgressBar from "../../components/progress-icon";
+import IconWithProgressBar from "../../components/progress_icon";
 import { calculateOverallSpending } from "../../redux/actions/dashboardActions";
 import DashboardWithNoDataScreen from "../dashboard_nodata";
 
@@ -44,7 +44,9 @@ const DashboardScreen = ({ navigation }) => {
   const handleMonthArrowPress = (value) => {
     setShowNoDataDashboard(!value);
   };
-  const handleEdit = () => {};
+  const handleEdit = () => {
+    navigation.navigate("EditSpentLimit");
+  };
 
   return (
     <SafeAreaView style={dashboard_styles.container}>

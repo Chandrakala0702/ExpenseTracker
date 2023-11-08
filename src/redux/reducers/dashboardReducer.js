@@ -67,6 +67,63 @@ const initialState = {
     },
   ],
   selectedCategory: null,
+  spentLimitData: [
+    {
+      id: 2,
+      name: "lipstick",
+      type: "material-community",
+      trackColor: "#5281AC",
+      text: "Beauty",
+      innerTrackColor: "#EAF0F5",
+      spentAmountLimit: 2000,
+    },
+
+    {
+      id: 5,
+      name: "home",
+      type: "material-icon",
+      trackColor: "#F0D0D4",
+      text: "Housing",
+      innerTrackColor: "#FBF4F4",
+      spentAmountLimit: 2000,
+    },
+    {
+      id: 1,
+      name: "shirt",
+      type: "ionicon",
+      trackColor: "#DABB4F",
+      text: "Clothing",
+      innerTrackColor: "#FBF7EA",
+      spentAmountLimit: 2000,
+    },
+    {
+      id: 4,
+      name: "restaurant",
+      type: "material-icon",
+      trackColor: "#76A6D3",
+      text: "Food",
+      innerTrackColor:"#EFF4FA",
+      spentAmountLimit: 2000,
+    },
+    {
+      id: 3,
+      name: "volunteer-activism",
+      type: "material-icon",
+      trackColor: "#EF9E38",
+      text: "Health & Fitness",
+      innerTrackColor: "#FDF3E7",
+      spentAmountLimit: 2000,
+    },
+    {
+      id: 6,
+      name: "camera",
+      type: "font-awesome",
+      trackColor: "#5ACCD1",
+      text: "Entertainment",
+      innerTrackColor: "#EBF9F9",
+      spentAmountLimit: 2000,
+    },
+  ],
 };
 
 const dashboardReducer = (state = initialState, action) => {

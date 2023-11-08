@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, Text, Pressable } from "react-native";
 import { Icon } from "react-native-elements";
 import { ProgressCircle } from "react-native-svg-charts";
@@ -12,10 +12,6 @@ const IconWithProgressBar = () => {
 
   const handlePress = (category) => {
     dispatch(setSelectedCategory(category));
-  };
-
-  const handleSpentPercentage = (item) => {
-    return ((item.spentAmount / item.spentAmountLimit) * 100).toFixed(0) + "%";
   };
 
   return (
