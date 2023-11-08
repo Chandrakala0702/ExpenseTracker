@@ -1,7 +1,7 @@
 import * as actionTypes from "../actionTypes/dashboardActionTypes";
 
 const initialState = {
-  overallSpentPercentage: "",
+  overallSpentPercentage: 0,
   overallAmountLimit: 0,
   overAllSpentAmount: 0,
   categoryData: [
@@ -146,7 +146,7 @@ const dashboardReducer = (state = initialState, action) => {
         (total, category) => total + category.spentAmount,
         0
       );
-      const overallSpentPercentage = (
+      const overallSpentPercentage = parseFloat(
         (overAllSpentAmount / overallAmountLimit) *
         100
       ).toFixed(0);

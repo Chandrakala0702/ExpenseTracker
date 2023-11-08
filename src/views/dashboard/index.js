@@ -92,13 +92,10 @@ const DashboardScreen = ({ navigation }) => {
                 style={dashboard_styles.progressCircle}
                 progress={
                   selectedCategory
-                    ? parseFloat(
-                        selectedCategory.spentAmount /
-                          selectedCategory.spentAmountLimit
-                      ).toFixed(1)
-                    : parseFloat(
-                        dashboardState.overallSpentPercentage / 100
-                      ).toFixed(1)
+                    ? parseInt(selectedCategory.spentAmount / selectedCategory.spentAmountLimit)
+                    : dashboardState?.overallSpentPercentage
+                      ? parseInt(dashboardState.overallSpentPercentage / 100)
+                      : 0
                 }
                 progressColor="rgb(134, 65, 244)"
                 startAngle={Math.PI * 0.5}
