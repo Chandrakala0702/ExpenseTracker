@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   },
   charSummaryValueText: {
     fontSize: 12,
-    fontWeight: '700',
+    fontWeight: "700",
     fontFamily: "Montserrat",
     color: "#1D1D2C",
   },
@@ -56,5 +56,20 @@ export const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     marginBottom: "5%",
+  },
+  chartContainer: {
+    height: "30.5%",
+    marginBottom: "2%",
+    backgroundColor: "red",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  categoryContainer: {
+    height: "37.5%",
+    backgroundColor: "green",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

@@ -6,7 +6,7 @@ import CalendarMonthView from "../../components/calendar-month";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/loginActions";
 
-const DashboardScreen = ({navigation}) => {
+const DashboardScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -39,16 +39,7 @@ const DashboardScreen = ({navigation}) => {
         <View style={dashboard_styles.monthView}>
           <CalendarMonthView />
         </View>
-        <View
-          style={{
-            height: "30.5%",
-            marginBottom: "2%",
-            backgroundColor: "red",
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        ></View>
+        <View style={dashboard_styles.chartContainer}></View>
         <View style={[dashboard_styles.titleView, { marginBottom: 0 }]}>
           <Text style={dashboard_styles.chartSummaryTitle}>Spending Limit</Text>
           <Text style={dashboard_styles.chartSummaryTitle}>Amount Spent</Text>
@@ -57,7 +48,7 @@ const DashboardScreen = ({navigation}) => {
           <Text style={dashboard_styles.charSummaryValueText}>AED 4567.78</Text>
           <Text style={dashboard_styles.charSummaryValueText}>AED 898.90</Text>
         </View>
-        <View style={{ height: "37.5%", backgroundColor: "green" }}></View>
+        <View style={dashboard_styles.categoryContainer}></View>
       </View>
     </SafeAreaView>
   );

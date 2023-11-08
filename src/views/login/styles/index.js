@@ -41,4 +41,20 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: "center",
   },
+  logoContainer: {
+    height: "20%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  inputContainer: {
+    height: "30%",
+    justifyContent: "center",
+    width: "100%",
+  },
+  loginButton: {
+    height: "10%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });

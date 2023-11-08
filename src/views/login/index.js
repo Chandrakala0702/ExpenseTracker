@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { View, Text, TextInput, Image, Pressable } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { styles as login_styles } from "./styles";
@@ -29,17 +29,9 @@ const LoginScreen = ({ navigation }) => {
     }
   }, [isAuthenticated]);
 
-
   return (
     <View style={login_styles.container}>
-      <View
-        style={{
-          height: "20%",
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <View style={login_styles.logoContainer}>
         <Image
           source={require("../../../assets/images/logo_tracker.png")}
           style={login_styles.logo}
@@ -48,13 +40,7 @@ const LoginScreen = ({ navigation }) => {
       {loginState.error && (
         <Text style={login_styles.errorText}>{loginState.error}</Text>
       )}
-      <View
-        style={{
-          height: "30%",
-          justifyContent: "center",
-          width: "100%",
-        }}
-      >
+      <View style={login_styles.inputContainer}>
         <Text style={login_styles.label}>Username</Text>
         <TextInput
           style={login_styles.input}
@@ -75,13 +61,7 @@ const LoginScreen = ({ navigation }) => {
           }}
         />
       </View>
-      <View
-        style={{
-          height: "10%",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <View style={login_styles.loginButton}>
         <Pressable onPress={handleLogin} style={login_styles.button}>
           <Text style={[login_styles.label, { textAlign: "center" }]}>
             Login
