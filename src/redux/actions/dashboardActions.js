@@ -12,3 +12,17 @@ export const calculateOverallSpending = () => {
     type: actionTypes.CALCULATE_OVERALL_SPENDING,
   };
 };
+
+export const setNewSpentLimitData = (data) => {
+  return {
+    type: actionTypes.SET_NEW_SPENT_LIMIT_DATA,
+    payload: data,
+  };
+};
+
+export const setNewCategoryData = (data) => {
+  return {
+    type: actionTypes.SET_NEW_CATEGORY_DATA,
+    payload: data,
+  };
+};

@@ -102,7 +102,7 @@ const initialState = {
       type: "material-icon",
       trackColor: "#76A6D3",
       text: "Food",
-      innerTrackColor:"#EFF4FA",
+      innerTrackColor: "#EFF4FA",
       spentAmountLimit: 2000,
     },
     {
@@ -155,6 +155,16 @@ const dashboardReducer = (state = initialState, action) => {
         overallAmountLimit,
         overAllSpentAmount,
         overallSpentPercentage,
+      };
+    case actionTypes.SET_NEW_CATEGORY_DATA:
+      return {
+        ...state,
+        categoryData: action.payload,
+      };
+    case actionTypes.SET_NEW_SPENT_LIMIT_DATA:
+      return {
+        ...state,
+        spentLimitData: action.payload,
       };
     default:
       return state;
