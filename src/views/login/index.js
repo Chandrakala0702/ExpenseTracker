@@ -11,6 +11,7 @@ import {
 import { logoImage } from "../../utility/images";
 import { LoginConstant } from "../../utility/constants";
 import AsyncStorage from "@react-native-community/async-storage";
+import { isEmailValid } from "../../utility/common";
 
 const LoginScreen = ({ navigation }) => {
   const loginState = useSelector((state) => state.login);
@@ -20,7 +21,10 @@ const LoginScreen = ({ navigation }) => {
   const handleLogin = () => {
     dispatch(setLoginError(null));
     if (loginState.username == "" || loginState.password == "") {
-      dispatch(setLoginError("Username/Password cannot be empty"));
+      dispatch(setLoginError(LoginConstant.title.emptyFields));
+    }
+    if (loginState.username && !isEmailValid(loginState.username)) {
+      dispatch(setLoginError(LoginConstant.title.invalidEmail));
     } else {
       dispatch(login());
     }
@@ -56,19 +60,21 @@ const LoginScreen = ({ navigation }) => {
         <TextInput
           style={login_styles.input}
           placeholder={LoginConstant.title.usernamePlaceholderText}
+          placeholderTextColor={"gray"}
           value={loginState.username}
           onChangeText={(value) => {
-            dispatch(setUsername(value.toLowerCase()));
+            dispatch(setUsername(value.toLowerCase().trim()));
           }}
         />
         <Text style={login_styles.label}>{LoginConstant.title.password}</Text>
         <TextInput
           style={login_styles.input}
+          placeholderTextColor={"gray"}
           placeholder={LoginConstant.title.passwordPlaceholderText}
           secureTextEntry
           value={loginState.password}
           onChangeText={(value) => {
-            dispatch(setPassword(value));
+            dispatch(setPassword(value.trim()));
           }}
         />
       </View>

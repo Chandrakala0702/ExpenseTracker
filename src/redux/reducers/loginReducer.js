@@ -3,8 +3,8 @@ import * as actionTypes from "../actionTypes/loginActionTypes";
 
 const initialState = {
   isAuthenticated: false,
-  username: "chandrabasker.95@gmail.com",
-  password: "Chandra@123$",
+  username: "",
+  password: "",
   error: "",
 };
 
@@ -26,10 +26,7 @@ const loginReducer = (state = initialState, action) => {
         error: action.payload,
       };
     case actionTypes.LOGIN_REQUEST:
-      if (
-        state.username == "chandrabasker.95@gmail.com" &&
-        state.password == "Chandra@123$"
-      ) {
+      if (state.password == "SOM@React@1") {
         AsyncStorage.setItem("isAuthenticated", "true");
         return { ...state, isAuthenticated: true, error: "" };
       } else {

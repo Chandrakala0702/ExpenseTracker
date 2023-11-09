@@ -45,7 +45,7 @@ const DashboardScreen = ({ navigation }) => {
   const handleLogout = async () => {
     dispatch(logout());
     await AsyncStorage.removeItem("isAuthenticated");
-    navigation.navigate("LoginScreen");
+    navigation.navigate("Login");
   };
 
   const handleMonthArrowPress = (value) => {

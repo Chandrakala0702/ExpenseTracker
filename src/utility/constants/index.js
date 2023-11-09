@@ -35,5 +35,7 @@ export const LoginConstant = {
     login: "Login",
     usernamePlaceholderText: "Enter your username",
     passwordPlaceholderText: "Enter your password",
+    emptyFields: "Username/Password cannot be empty",
+    invalidEmail: "Please enter valid email address",
   },
 };
