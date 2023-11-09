@@ -10,6 +10,7 @@ import IconWithProgressBar from "../../components/progress_icon";
 import { calculateOverallSpending } from "../../redux/actions/dashboardActions";
 import DashboardWithNoDataScreen from "../dashboard_nodata";
 import { DashboardConstant } from "../../utility/constants";
+import AsyncStorage from "@react-native-community/async-storage";
 
 const DashboardScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -41,9 +42,10 @@ const DashboardScreen = ({ navigation }) => {
     dispatch(calculateOverallSpending());
   }, [dashboardState.categoryData]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     dispatch(logout());
-    navigation.navigate("Login");
+    await AsyncStorage.removeItem("isAuthenticated");
+    navigation.navigate("LoginScreen");
   };
 
   const handleMonthArrowPress = (value) => {
@@ -92,10 +94,15 @@ const DashboardScreen = ({ navigation }) => {
                 style={dashboard_styles.progressCircle}
                 progress={
                   selectedCategory
-                    ? parseInt(selectedCategory.spentAmount / selectedCategory.spentAmountLimit)
-                    : dashboardState?.overallSpentPercentage
-                      ? parseInt(dashboardState.overallSpentPercentage / 100)
-                      : 0
+                    ? parseFloat(
+                        selectedCategory.spentAmount /
+                          selectedCategory.spentAmountLimit
+                      ).toFixed(1)
+                    : dashboardState.overallSpentPercentage
+                    ? parseFloat(
+                        dashboardState.overallSpentPercentage / 100
+                      ).toFixed(1)
+                    : 0
                 }
                 progressColor="rgb(134, 65, 244)"
                 startAngle={Math.PI * 0.5}

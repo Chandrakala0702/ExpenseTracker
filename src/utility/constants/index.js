@@ -27,3 +27,13 @@ export const EditSpentLimitConstant = {
     AED: "AED",
   },
 };
+
+export const LoginConstant = {
+  title: {
+    username: "Username",
+    password: "Password",
+    login: "Login",
+    usernamePlaceholderText: "Enter your username",
+    passwordPlaceholderText: "Enter your password",
+  },
+};

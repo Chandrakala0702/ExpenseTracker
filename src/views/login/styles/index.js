@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
   logo: {
     width: 100,
     height: 100,
-    marginBottom: 20,
     alignSelf: "center",
   },
   button: {
@@ -42,7 +41,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   logoContainer: {
-    height: "20%",
+    height: "30%",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",

@@ -1,9 +1,10 @@
+import AsyncStorage from "@react-native-community/async-storage";
 import * as actionTypes from "../actionTypes/loginActionTypes";
 
 const initialState = {
   isAuthenticated: false,
   username: "chandrabasker.95@gmail.com",
-  password: "SOM@React@1",
+  password: "Chandra@123$",
   error: "",
 };
 
@@ -27,10 +28,12 @@ const loginReducer = (state = initialState, action) => {
     case actionTypes.LOGIN_REQUEST:
       if (
         state.username == "chandrabasker.95@gmail.com" &&
-        state.password == "SOM@React@1"
+        state.password == "Chandra@123$"
       ) {
+        AsyncStorage.setItem("isAuthenticated", "true");
         return { ...state, isAuthenticated: true, error: "" };
       } else {
+        AsyncStorage.setItem("isAuthenticated", "false");
         return {
           ...state,
           isAuthenticated: false,

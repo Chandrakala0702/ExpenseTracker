@@ -9,6 +9,8 @@ import {
   setUsername,
 } from "../../redux/actions/loginActions";
 import { logoImage } from "../../utility/images";
+import { LoginConstant } from "../../utility/constants";
+import AsyncStorage from "@react-native-community/async-storage";
 
 const LoginScreen = ({ navigation }) => {
   const loginState = useSelector((state) => state.login);
@@ -30,6 +32,17 @@ const LoginScreen = ({ navigation }) => {
     }
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      const isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
+      if (isAuthenticated == "true") {
+        navigation.navigate("Dashboard");
+      }
+    };
+
+    checkAuthentication();
+  }, []);
+
   return (
     <View style={login_styles.container}>
       <View style={login_styles.logoContainer}>
@@ -39,19 +52,19 @@ const LoginScreen = ({ navigation }) => {
         <Text style={login_styles.errorText}>{loginState.error}</Text>
       )}
       <View style={login_styles.inputContainer}>
-        <Text style={login_styles.label}>Username</Text>
+        <Text style={login_styles.label}>{LoginConstant.title.username}</Text>
         <TextInput
           style={login_styles.input}
-          placeholder="Enter your username"
+          placeholder={LoginConstant.title.usernamePlaceholderText}
           value={loginState.username}
           onChangeText={(value) => {
             dispatch(setUsername(value.toLowerCase()));
           }}
         />
-        <Text style={login_styles.label}>Password</Text>
+        <Text style={login_styles.label}>{LoginConstant.title.password}</Text>
         <TextInput
           style={login_styles.input}
-          placeholder="Enter your password"
+          placeholder={LoginConstant.title.passwordPlaceholderText}
           secureTextEntry
           value={loginState.password}
           onChangeText={(value) => {
@@ -62,7 +75,7 @@ const LoginScreen = ({ navigation }) => {
       <View style={login_styles.loginButton}>
         <Pressable onPress={handleLogin} style={login_styles.button}>
           <Text style={[login_styles.label, { textAlign: "center" }]}>
-            Login
+            {LoginConstant.title.login}
           </Text>
         </Pressable>
       </View>
