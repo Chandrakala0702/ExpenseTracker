@@ -24,5 +24,5 @@ export const styles = StyleSheet.create({
   },
   disabledArrow: {
     color: "grey",
-  }
+  },
 });

@@ -6,6 +6,7 @@ import {
   setNewCategoryData,
   setNewSpentLimitData,
   setSelectedCategory,
+  updateSelectedCategory,
 } from "../../redux/actions/dashboardActions";
 import { styles as slider_styles } from "./styles";
 import { DashboardConstant, SliderConstant } from "../../utility/constants";
@@ -28,7 +29,7 @@ const SliderComponent = ({ handleTotalSpentAmountLimit }) => {
           dashboardState.selectedCategory.id === category.id
         ) {
           dispatch(
-            setSelectedCategory({ ...category, spentAmountLimit: value })
+            updateSelectedCategory({ ...category, spentAmountLimit: value })
           );
         }
         return { ...category, spentAmountLimit: value };

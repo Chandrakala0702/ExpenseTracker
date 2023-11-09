@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    alignItems:'flex-start',
-    justifyContent: 'flex-start',
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
     marginBottom: 20,
   },
   iconContainer: {

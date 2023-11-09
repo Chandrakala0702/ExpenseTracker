@@ -137,6 +137,11 @@ const dashboardReducer = (state = initialState, action) => {
             ? null
             : action.payload,
       };
+    case actionTypes.UPDATE_SELECTED_CATEGORY:
+      return {
+        ...state,
+        selectedCategory: action.payload,
+      };
     case actionTypes.CALCULATE_OVERALL_SPENDING:
       const overallAmountLimit = state.categoryData.reduce(
         (total, category) => total + category.spentAmountLimit,
@@ -147,8 +152,7 @@ const dashboardReducer = (state = initialState, action) => {
         0
       );
       const overallSpentPercentage = parseFloat(
-        (overAllSpentAmount / overallAmountLimit) *
-        100
+        (overAllSpentAmount / overallAmountLimit) * 100
       ).toFixed(0);
       return {
         ...state,

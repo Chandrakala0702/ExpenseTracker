@@ -7,6 +7,13 @@ export const setSelectedCategory = (category) => {
   };
 };
 
+export const updateSelectedCategory = (category) => {
+  return {
+    type: actionTypes.UPDATE_SELECTED_CATEGORY,
+    payload: category,
+  };
+};
+
 export const calculateOverallSpending = () => {
   return {
     type: actionTypes.CALCULATE_OVERALL_SPENDING,
